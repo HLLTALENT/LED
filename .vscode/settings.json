@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "cmath": "c",
+        "cstdlib": "c",
+        "limits": "c",
+        "math.h": "c",
+        "type_traits": "c",
+        "stdio.h": "c",
+        "peripheraldriver.h": "c",
+        "datadeletetask.h": "c",
+        "w25q128.h": "c"
+    }
+}

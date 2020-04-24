@@ -1,0 +1,36 @@
+In archive /root/ESP32_RS485-master/build/modbus_slave/libmodbus_slave.a:
+
+modbus_slave.o:     file format elf32-xtensa-le
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000000  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  00000034  2**0
+                  ALLOC
+  3 .bss.discrete_reg_params 00000002  00000000  00000000  00000034  2**2
+                  ALLOC
+  4 .bss.coil_reg_params 00000002  00000000  00000000  00000034  2**2
+                  ALLOC
+  5 .bss.input_reg_params 00000010  00000000  00000000  00000034  2**2
+                  ALLOC
+  6 .bss.holding_reg_params 00000056  00000000  00000000  00000034  2**2
+                  ALLOC
+  7 .debug_info   0000038c  00000000  00000000  00000034  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  8 .debug_abbrev 00000085  00000000  00000000  000003c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_aranges 00000018  00000000  00000000  00000445  2**0
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+ 10 .debug_line   0000012f  00000000  00000000  0000045d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    000003f0  00000000  00000000  0000058c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .comment      0000003b  00000000  00000000  0000097c  2**0
+                  CONTENTS, READONLY
+ 13 .xtensa.info  00000038  00000000  00000000  000009b7  2**0
+                  CONTENTS, READONLY
+ 14 .xt.prop      00000030  00000000  00000000  000009ef  2**0
+                  CONTENTS, RELOC, READONLY
