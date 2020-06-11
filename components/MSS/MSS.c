@@ -110,7 +110,7 @@ float parseValueFloat(char *data_2, int valuePos, int valueSize)
     return parseValueOut;
 }
 
-void Parse_Data(void)
+void Parse_Data()
 {
     static float outHeartNew_CM;
     static float maxRCS_updated;
@@ -119,11 +119,12 @@ void Parse_Data(void)
     double yRangePlot[numRangeBinProcessed];
     double RangeProfile[2 * numRangeBinProcessed];
     unsigned int indexRangeBin;
-
+    vTaskDelay(1000 / portTICK_RATE_MS);
     for (i = 0; i < 1024; i++)
     {
-        if ((data_1[i] == 0X02) && (data_1[i + 1] == 0X01) && (data_1[i + 2] == 0X04) && (data_1[i + 3] == 0X03) && (data_1[i + 4] == 0X06) && (data_1[i + 5] == 0X05) && (data_1[i + 6] == 0X08) && (data_1[i + 7] == 0X07))
+        if ((data_3[i] == 0X02) && (data_3[i + 1] == 0X01) && (data_3[i + 2] == 0X04) && (data_3[i + 3] == 0X03) && (data_3[i + 4] == 0X06) && (data_3[i + 5] == 0X05) && (data_3[i + 6] == 0X08) && (data_3[i + 7] == 0X07))
         {
+
             break;
             //printf("%d ",i);
         }
@@ -131,13 +132,12 @@ void Parse_Data(void)
 
     memcpy(data_2, (data_3 + i), 288);
     /*printf("data_2: ");
-    for(int z=0;z<288;z++)
-        
-    {  
-        printf("%02X ",data_2[i]);
+    for (int z = 0; z < 288; z++)
+
+    {
+        printf("%02X ", data_2[i]);
     }
-        printf("\r\n"); 
-    */
+    printf("\r\n");*/
 
     float BreathingRate_FFT = parseValueFloat(data_2, INDEX_IN_DATA_BREATHING_RATE_FFT, 4); // Breathing Rate
     float BreathingRatePK_Out = parseValueFloat(data_2, INDEX_IN_DATA_BREATHING_RATE_PEAK, 4);
@@ -191,6 +191,7 @@ void Parse_Data(void)
         {
             HeartRate_Out = 0;
             printf("heartRate:%1.0f\r\n", HeartRate_Out);
+            //vTaskDelay(1000 / portTICK_RATE_MS);
             //printf("\r\n");
         }
         else
@@ -199,11 +200,13 @@ void Parse_Data(void)
             {
                 HeartRate_Out = heartRate_FFT;
                 printf("heartRate_FFT:%1.1f\r\n", HeartRate_Out);
+                // vTaskDelay(1000 / portTICK_RATE_MS);
             }
             else
             {
                 HeartRate_Out = heartRate_Pk;
                 printf("heartRate_Pk:%1.1f\r\n", HeartRate_Out);
+                //vTaskDelay(1000 / portTICK_RATE_MS);
             }
         }
     }
@@ -213,6 +216,7 @@ void Parse_Data(void)
         {
             HeartRate_Out = 0;
             printf("heartRate:%1.0f\r\n", HeartRate_Out);
+            //vTaskDelay(1000 / portTICK_RATE_MS);
             //printf("\r\n");
         }
         else
@@ -221,11 +225,13 @@ void Parse_Data(void)
             {
                 HeartRate_Out = heartRate_FFT;
                 printf("heartRate_FFT:%1.0f\r\n", HeartRate_Out);
+                // vTaskDelay(1000 / portTICK_RATE_MS);
             }
             else
             {
                 HeartRate_Out = heartRate_xCorr;
                 printf("heartRate_xCorr:%1.0f\r\n", HeartRate_Out);
+                //vTaskDelay(1000 / portTICK_RATE_MS);
             }
         }
     }
@@ -235,22 +241,25 @@ void Parse_Data(void)
     {
 
         BreathingRate_Out = 0;
-        printf("BreathingRate:%1.3f ", BreathingRate_Out);
-        printf("\r\n");
+        printf("BreathingRate:%1.3f\r\n", BreathingRate_Out);
+        vTaskDelay(1000 / portTICK_RATE_MS);
+        //printf("\r\n");
     }
     else
     {
         if (breathRate_CM > THRESH_BREATH_CM)
         {
             BreathingRate_Out = BreathingRate_FFT;
-            printf("BreathingRate:%1.3f ", BreathingRate_Out);
-            printf("\r\n");
+            printf("BreathingRate:%1.3f\r\n", BreathingRate_Out);
+            vTaskDelay(1000 / portTICK_RATE_MS);
+            //printf("\r\n");
         }
         else
         {
             BreathingRate_Out = BreathingRatePK_Out;
-            printf("BreathingRate:%1.3f ", BreathingRate_Out);
-            printf("\r\n");
+            printf("BreathingRate:%1.3f\r\n", BreathingRate_Out);
+            vTaskDelay(1000 / portTICK_RATE_MS);
+            //printf("\r\n");
         }
     }
 }
@@ -260,6 +269,7 @@ void MSS_Read_echo(void)
 
     //unsigned int index;
     uart_read_bytes(UART_NUM_1, (uint8_t *)data_1, BUF_SIZE, 100 / portTICK_RATE_MS); //int len1 = uart_read_bytes(UART_NUM_1, (uint8_t*)data_1, BUF_SIZE,100/ portTICK_RATE_MS);
+    //vTaskDelay(1000 / portTICK_RATE_MS);
     /*if (len1 != 0)
     {
         printf("UART1 recv:");
